@@ -23,9 +23,9 @@ Consumers read the value at startup: restart them after a change (CronJobs pick 
   - Deployments: gms
 - [ ] gms-canary-all-properties (connectivity.properties:8)
   - Deployments: gms-canary
-- [ ] okta-account-utils-properties (application.properties:5)
+- [ ] okta-account-utils-properties (application.properties:5) — IN PROGRESS: key moved from ConfigMap to Secret (Vault in prod, AWS Secrets Manager in stg); PR waiting to be accepted and deployed. Check after deploy + one manual CronJob run.
   - CronJobs: okta-account-utils (every 20 min)
-- [ ] user-revocation-utils-properties (application.properties:5)
+- [ ] user-revocation-utils-properties (application.properties:5) — NEXT: same ConfigMap-to-Secret migration as okta-account-utils
   - CronJobs: user-revocation-utils (every 20 min)
 
 ## Open
@@ -51,6 +51,6 @@ For each item: decide `use Secret` (code reads the key) or `remove key` (code ne
 ## Replace or remove
 - [ ] gms-all-properties
 - [ ] gms-canary-all-properties
-- [ ] okta-account-utils-properties
-- [ ] user-revocation-utils-properties
+- [ ] okta-account-utils-properties (migration PR open, awaiting accept and deploy)
+- [ ] user-revocation-utils-properties (next)
 - [ ] Verify after each: restart, service healthy, one manual CronJob run
