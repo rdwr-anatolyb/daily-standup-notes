@@ -3,6 +3,7 @@
 Checked: 2026-11-24 (read-only scan of portal-ng). Hashes and values intentionally not recorded.
 `[x]` = on the new token. `[ ]` = still on the old token.
 Skipped: alerts-service-secrets (per owner).
+Out of scope for now: reporter-poc-all-properties, usermanagement-poc-all-properties (per owner).
 Consumers read the value at startup: restart them after a change (CronJobs pick it up on next run).
 
 ## Secrets
@@ -26,10 +27,6 @@ Consumers read the value at startup: restart them after a change (CronJobs pick 
   - CronJobs: okta-account-utils (every 20 min)
 - [ ] user-revocation-utils-properties (application.properties:5)
   - CronJobs: user-revocation-utils (every 20 min)
-- [ ] reporter-poc-all-properties (connectivity.properties:79)
-  - Deployments: reporter-poc (confirm still in use)
-- [ ] usermanagement-poc-all-properties (connectivity.properties:42)
-  - Deployments: usermanagement-poc (confirm still in use)
 
 ## Open
 - [ ] health-monitor-secret / okta.api.key holds an unrecognized token (was empty): confirm owner
