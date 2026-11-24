@@ -31,3 +31,26 @@ Consumers read the value at startup: restart them after a change (CronJobs pick 
 ## Open
 - [ ] health-monitor-secret / okta.api.key holds an unrecognized token (was empty): confirm owner
 - [ ] Revoke old token, only after all boxes above are checked and Okta System Log shows no old-token calls
+
+# Phase 2: replace literals in ConfigMaps with Secrets (after rotation)
+
+Prerequisite: the ConfigMaps above are rotated first, so the old value is not copied into a Secret.
+Method: change Helm values / ArgoCD (not kubectl edit), restart, verify; run each CronJob once.
+For each item: decide `use Secret` (code reads the key) or `remove key` (code never reads it).
+
+## Code check: does the code read the key?
+- [ ] gms / gms-canary (notes: literal only, no reader found)
+- [ ] gms-ng-db (notes: go-security v1.0.4 receives key, unused)
+- [ ] activity-log-service (notes: go-security v1.0.4 receives key, unused)
+- [ ] okta-account-utils (needed; repo not cloned locally)
+- [ ] user-revocation-utils (needed; repo not cloned locally)
+- [ ] reporter (needed: getUser for tenant)
+- [ ] usermanagement (needed)
+- [ ] ip-groups, geo-blocking, health-monitor (key empty or unknown: needed at all?)
+
+## Replace or remove
+- [ ] gms-all-properties
+- [ ] gms-canary-all-properties
+- [ ] okta-account-utils-properties
+- [ ] user-revocation-utils-properties
+- [ ] Verify after each: restart, service healthy, one manual CronJob run
