@@ -1,6 +1,6 @@
 # Okta API token: prod secrets checklist
 
-Checked: 2026-11-24 (read-only scan of portal-ng). Hashes and values intentionally not recorded.
+Checked: 2026-11-24 (read-only scan of portal-ng); reporter-okta-secret status refreshed after restarts. Hashes and values intentionally not recorded.
 `[x]` = on the new token. `[ ]` = still on the old token.
 Skipped: alerts-service-secrets (per owner).
 Out of scope for now: reporter-poc-all-properties, usermanagement-poc-all-properties (per owner).
@@ -11,8 +11,8 @@ Consumers read the value at startup: restart them after a change (CronJobs pick 
   - Deployments: activity-log-service, activity-log-service-canary
 - [x] usermanagement-secret / OKTA_API_KEY
   - Deployments: usermanagement
-- [ ] reporter-okta-secret / OKTA_API_KEY
-  - Deployments: reporter-canary (first), reporter, gms-ng-db
+- [x] reporter-okta-secret / OKTA_API_KEY (updated and restarted 2026-11-24: reporter-canary, reporter x4, gms-ng-db x2; no Okta errors in logs; tenant check on new activity-log rows still to confirm)
+  - Deployments: reporter-canary, reporter, gms-ng-db
 - [ ] usermanagement-secret / okta.api.key (stale)
   - Consumers: none
 - [ ] reporter-secret / okta.api.key (stale)
